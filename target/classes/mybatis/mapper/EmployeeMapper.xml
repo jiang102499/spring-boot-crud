@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atguigu.springboot.mapper.EmployeeMapper">
+
+
+    <select id="allemp" resultType="map">
+       select employee.id,employee.lastName,employee.email,employee.gender,department.departmentName,employee.birth
+        from employee
+        join department on department.id=employee.department_id
+    </select>
+
+    <delete id="delete" parameterType="com.atguigu.springboot.entities.Employee">
+        DELETE FROM employee WHERE id=#{id};
+    </delete>
+
+
+    <insert id="save" parameterType="com.atguigu.springboot.entities.Employee">
+        insert  into employee value (#{id},#{lastName},#{email},#{gender},#{department_id},#{birth});
+    </insert>
+
+    <update id="update" parameterType="com.atguigu.springboot.entities.Employee">
+        UPDATE  employee
+        <set>
+            <if test="lastName!=null">
+                lastName=#{lastName},
+            </if>
+            <if test="email!=null">
+                email=#{email},
+            </if>
+            <if test="gender!=-1">
+                gender=#{gender},
+            </if>
+            <if test="department_id!=0">
+                department_id=#{department_id},
+            </if>
+            <if test="birth!=null">
+                birth=#{birth},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="selectById" resultType="com.atguigu.springboot.entities.Employee">
+        select * from employee where id=#{id}
+    </select>
+</mapper>
