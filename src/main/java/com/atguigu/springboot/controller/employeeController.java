@@ -2,8 +2,10 @@ package com.atguigu.springboot.controller;
 
 import com.atguigu.springboot.entities.Department;
 import com.atguigu.springboot.entities.Employee;
+import com.atguigu.springboot.entities.dto.EmployeeDto;
 import com.atguigu.springboot.service.DepartmentService;
 import com.atguigu.springboot.service.EmploteeService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,24 +29,22 @@ public class employeeController {
   DepartmentService departmentService;
 
 
-  @GetMapping("/allemp")
-  public String allemp(Model model){
-    List<Employee> list =service.allemp();
-    if (list!=null){
-      model.addAttribute("emps",list);
-      System.out.println(list);
-      return "list";
-    }else
-      return "查询失败";
+  @GetMapping("/allemp/{page}")
+  public String allemp(Model model,@PathVariable("page") int page,Integer size){
+    PageInfo<Employee> list =service.allemp(page, 5);
+    model.addAttribute("emps",list);
+    System.out.println(list);
+    return "list";
+
   }
+
 
   @GetMapping("/deleteemp/{id}")
   public String delete(@PathVariable("id")Integer id){
         service.delete(id);
         System.out.println(id);
-
         System.out.println("删除成功");
-      return "redirect:/allemp";
+      return "redirect:/allemp/1";
 
   }
 
@@ -61,10 +61,10 @@ public class employeeController {
 
   //添加保存按钮
   @PostMapping("/save")
-  public String save(Employee employee){
-      service.save(employee);
+  public String save(EmployeeDto employeedto){
+      service.save(employeedto);
       System.out.println("添加成功");
-      return  "redirect:/allemp";
+      return  "redirect:/allemp/1";
   }
 
 
@@ -83,12 +83,12 @@ public class employeeController {
 
 
   @PutMapping("/empup")
-  public  String update(Employee employee){
-
-    service.update(employee);
+  public  String update(EmployeeDto employeedto){
+    service.update(employeedto);
     System.out.println("修改成功");
-    return "redirect:/allemp";
+    return "redirect:/allemp/1";
 
   }
+
 
 }

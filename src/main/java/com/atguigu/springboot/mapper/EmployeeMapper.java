@@ -1,6 +1,8 @@
 package com.atguigu.springboot.mapper;
 
 import com.atguigu.springboot.entities.Employee;
+import com.atguigu.springboot.entities.dto.EmployeeDto;
+import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -18,18 +20,17 @@ import java.util.List;
 @Repository
 public interface EmployeeMapper {
 
-  List<Employee> allemp();
+  //分页查询
+  List<Employee> allemp(Employee employee);
 
 
   public int delete(Integer id);
 
   //保存
-  public  int  save(Employee employee);
+  public  int  save(EmployeeDto employeedto);
 
 
-  public List<Employee> querylist();
-
-  public  int update(Employee employee);
+  public  int update(EmployeeDto employeedto);
 
   //获取id
   public Employee selectById(Integer id);

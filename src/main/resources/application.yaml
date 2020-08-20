@@ -6,7 +6,10 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
 
 
-
 mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
   type-aliases-package: com.atguigu.springboot.entities
+server:
+  port: 8081
+
+

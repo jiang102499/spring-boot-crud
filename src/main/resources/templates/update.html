@@ -68,7 +68,7 @@
             <div class="form-group">
                 <label>department</label>
                 <select class="form-control" name="department_id">
-                    <option th:selected="${deps.id==emp.department_id}" th:each="deps:${depms}" th:text="${deps.departmentName}" th:value="${deps.id}"></option>
+                    <option th:selected="${deps.id==emp.department.id}" th:each="deps:${depms}" th:text="${deps.departmentName}" th:value="${deps.id}"></option>
                 </select>
             </div>
             <div class="form-group">

@@ -23,7 +23,7 @@ public class MymvcConfig extends WebMvcConfigurerAdapter {
 
     //  super.addViewControllers(registry);
     // 浏览器发送请求，来到界面
-    registry.addViewController("/atguigu").setViewName("index");
+   // registry.addViewController("/atguigu").setViewName("index");
 
 
     }

@@ -1,5 +1,7 @@
 package com.atguigu.springboot.entities;
 
+import java.io.Serializable;
+
 /**
  * @ClassName User
  * @Description TODO
@@ -7,14 +9,13 @@ package com.atguigu.springboot.entities;
  * @Date 2020/8/11 13:46
  * @Version 1.0
  **/
-public class User {
+public class User{
 
   private int id;
 
-  private  String name_abc;
+  private  String name;
 
   private  String password;
-
 
   public int getId() {
     return id;
@@ -24,12 +25,12 @@ public class User {
     this.id = id;
   }
 
-  public String getName_abc() {
-    return name_abc;
+  public String getName() {
+    return name;
   }
 
-  public void setName_abc(String name_abc) {
-    this.name_abc = name_abc;
+  public void setName(String name) {
+    this.name = name;
   }
 
   public String getPassword() {
@@ -44,7 +45,7 @@ public class User {
   public String toString() {
     return "User{" +
       "id=" + id +
-      ", name_abc='" + name_abc + '\'' +
+      ", name='" + name + '\'' +
       ", password='" + password + '\'' +
       '}';
   }

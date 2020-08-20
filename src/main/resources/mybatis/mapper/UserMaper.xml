@@ -4,7 +4,7 @@
 <mapper namespace="com.atguigu.springboot.mapper.UserMapper">
 
     <select id="login" resultType="com.atguigu.springboot.entities.User">
-        select * from user where name=#{name_abc} AND  password=#{password};
+        select * from user where name=#{name} AND  password=#{password};
     </select>
 
 

@@ -3,19 +3,41 @@
 
 <mapper namespace="com.atguigu.springboot.mapper.EmployeeMapper">
 
+    <resultMap id="Employee" type="com.atguigu.springboot.entities.Employee">
+        <id property="id" column="id" jdbcType="INTEGER"></id>
+        <result property="lastName" column="lastName" jdbcType="VARCHAR"></result>
+        <result property="email" column="email" jdbcType="VARCHAR"></result>
+        <result property="gender" column="gender" jdbcType="INTEGER"></result>
+        <result property="birth" column="birth" jdbcType="DATE"></result>
+        <collection property="department" ofType="com.atguigu.springboot.entities.Department">
+            <id property="id" column="id" jdbcType="INTEGER"></id>
+            <result property="departmentName" column="departmentName" jdbcType="VARCHAR"></result>
+        </collection>
+    </resultMap>
 
-    <select id="allemp" resultType="map">
+
+    <resultMap id="EmployeeDto" type="com.atguigu.springboot.entities.dto.EmployeeDto">
+        <id property="id" column="id" jdbcType="INTEGER"></id>
+        <result property="lastName" column="lastName" jdbcType="VARCHAR"></result>
+        <result property="email" column="email" jdbcType="VARCHAR"></result>
+        <result property="gender" column="gender" jdbcType="INTEGER"></result>
+        <result property="birth" column="birth" jdbcType="DATE"></result>
+        <result property="department_id" column="department_id" jdbcType="INTEGER"></result>
+    </resultMap>
+
+
+    <select id="allemp" resultMap="Employee">
        select employee.id,employee.lastName,employee.email,employee.gender,department.departmentName,employee.birth
         from employee
         join department on department.id=employee.department_id
     </select>
 
-    <delete id="delete" parameterType="com.atguigu.springboot.entities.Employee">
+    <delete id="delete" parameterType="com.atguigu.springboot.entities.dto.EmployeeDto">
         DELETE FROM employee WHERE id=#{id};
     </delete>
 
 
-    <insert id="save" parameterType="com.atguigu.springboot.entities.Employee">
+    <insert id="save" parameterType="com.atguigu.springboot.entities.dto.EmployeeDto">
         insert  into employee value (#{id},#{lastName},#{email},#{gender},#{department_id},#{birth});
     </insert>
 
@@ -41,7 +63,8 @@
         where id=#{id}
     </update>
 
-    <select id="selectById" resultType="com.atguigu.springboot.entities.Employee">
+    <select id="selectById" resultMap="Employee">
         select * from employee where id=#{id}
     </select>
+
 </mapper>

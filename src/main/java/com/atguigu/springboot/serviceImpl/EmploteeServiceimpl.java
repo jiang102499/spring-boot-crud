@@ -1,11 +1,16 @@
 package com.atguigu.springboot.serviceImpl;
 
 import com.atguigu.springboot.entities.Employee;
+import com.atguigu.springboot.entities.dto.EmployeeDto;
 import com.atguigu.springboot.mapper.EmployeeMapper;
 import com.atguigu.springboot.service.EmploteeService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
@@ -20,22 +25,25 @@ public class EmploteeServiceimpl implements EmploteeService {
 
   @Autowired
   EmployeeMapper mapper;
+
+
   @Override
-  public List<Employee> allemp() {
-    return mapper.allemp();
+  public PageInfo<Employee> allemp(int page, int size) {
+    PageHelper.startPage(page, size);
+    List<Employee> list =mapper.allemp(null);
+    PageInfo<Employee> info = new PageInfo<>(list);
+    return info;
   }
 
   @Override
-  public int save(Employee employee) {
+  public int save(EmployeeDto employeedto) {
 
-    return mapper.save(employee);
+    return mapper.save(employeedto);
 
   }
 
-  @Override
-  public List<Employee> querylist() {
-    return null;
-  }
+
+
 
   @Override
   public int delete(Integer id) {
@@ -43,8 +51,8 @@ public class EmploteeServiceimpl implements EmploteeService {
   }
 
   @Override
-  public int update(Employee employee) {
-    return mapper.update(employee);
+  public int update(EmployeeDto employeedto) {
+    return mapper.update(employeedto);
   }
 
   @Override

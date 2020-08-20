@@ -1,5 +1,7 @@
 package com.atguigu.springboot.entities;
 
+import java.io.Serializable;
+
 /**
  * @ClassName Department
  * @Description TODO
@@ -7,16 +9,12 @@ package com.atguigu.springboot.entities;
  * @Date 2020/8/6 15:53
  * @Version 1.0
  **/
-public class Department {
+public class Department{
 
   private  Integer id;
 
   private  String departmentName;
 
-  public Department(Integer id, String departmentName) {
-    this.id = id;
-    this.departmentName = departmentName;
-  }
 
   public Integer getId() {
     return id;

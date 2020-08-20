@@ -2,6 +2,7 @@ package com.atguigu.springboot.entities;
 
 import com.atguigu.springboot.entities.Department;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Date;
  * @Date 2020/8/6 15:53
  * @Version 1.0
  **/
-public class Employee {
+public class Employee{
 
   private  Integer id;
 
@@ -22,21 +23,9 @@ public class Employee {
   //1 male  ,0 female
   private  Integer gender;
 
-  private Integer department_id;
+  private Department department;
 
   private Date birth;
-
-  public Employee(Integer id, String lastName, String email, Integer gender, Integer department_id) {
-    this.id = id;
-    this.lastName = lastName;
-    this.email = email;
-    this.gender = gender;
-    this.department_id = department_id;
-    this.birth = new Date();
-  }
-
-  public Employee() {
-  }
 
   public Integer getId() {
     return id;
@@ -70,12 +59,12 @@ public class Employee {
     this.gender = gender;
   }
 
-  public Integer getDepartment_id() {
-    return department_id;
+  public Department getDepartment() {
+    return department;
   }
 
-  public void setDepartment_id(Integer department_id) {
-    this.department_id = department_id;
+  public void setDepartment(Department department) {
+    this.department = department;
   }
 
   public Date getBirth() {
@@ -93,7 +82,7 @@ public class Employee {
       ", lastName='" + lastName + '\'' +
       ", email='" + email + '\'' +
       ", gender=" + gender +
-      ", department_id=" + department_id +
+      ", department=" + department +
       ", birth=" + birth +
       '}';
   }
